@@ -142,15 +142,21 @@ ghci> cuboidVolume 1 2 3
 
 -- 2.4
 
+sphereVolume :: Floating a => a -> a
+sphereVolume r = (4/3) * pi * r^3
+
+coneVolume :: Floating a => a -> a -> a
+coneVolume r h = (1/3) * h * pi * r^2
+
+cuboidVolume :: Floating a => a -> a -> a -> a
+cuboidVolume a b c = a * b * c
+
 {-
-ghci> :l solids.hs
-[1 of 1] Compiling Solids           ( solids.hs, interpreted )
-Ok, one module loaded.
 ghci> :t sphereVolume
 sphereVolume :: Floating a => a -> a
 ghci> :t coneVolume
 coneVolume :: Floating a => a -> a -> a
-ghci> :type cuboidVolume
+ghci> :t cuboidVolume
 cuboidVolume :: Floating a => a -> a -> a -> a
 -}
 
@@ -165,10 +171,10 @@ ghci> cuboidVolume 1.1 2.2 3.3
 
 -- 2.5
 
+pyramidVolume :: Floating a => a -> a -> a
+pyramidVolume a h = (1/3) * h * a^2
+
 {-
-ghci> :l solids.hs
-[1 of 1] Compiling Solids           ( solids.hs, interpreted )
-Ok, one module loaded.
 ghci> :t pyramidVolume
 pyramidVolume :: Floating a => a -> a -> a
 -}
@@ -305,6 +311,15 @@ ghci> f8'' 7
 -}
 
 -- 2.7
+
+trArea1 :: Floating a => a -> a -> a
+trArea1 a h = (1/2) * a * h
+
+trArea2 :: Floating a => a -> a -> a -> a -> a
+trArea2 a b c r = (a * b * c) / (4 * r)
+
+trArea3 :: Floating a => a -> a -> a -> a -> a
+trArea3 a b c r = r * ((a + b + c) / 2)
 
 {-
 ghci> trArea1 3 4
