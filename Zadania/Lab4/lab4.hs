@@ -645,6 +645,10 @@ ghci> [n | n <- [1..5]]
 [1,2,3,4,5]
 -}
 
+{-
+suma1 = 1 + 1/2 + 1/3 + ... + 1/100
+-}
+
 -- Z wykorzystaniem sekcji.
 suma1 :: Double
 suma1 = sum (map (1 /) [1..100])
