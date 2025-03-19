@@ -578,6 +578,8 @@ ghci> read "35"
 *** Exception: Prelude.read: no parse
 ghci> read "35" :: Int
 35
+ghci> read "35" :: Float
+35.0
 ghci> show 35
 "35"
 -}
@@ -593,14 +595,36 @@ ghci> string2int ""
 0
 -}
 
-string2int' :: String -> Int
+string2int' :: String -> Integer
 string2int' [] = 0
-string2int' (x:xs) = (ord x - ord '0') * (10 ^ length xs) + string2int' xs
+string2int' x = read x
 
 {-
 ghci> string2int' "35"
 35
 ghci> string2int' ""
+0
+-}
+
+string2int'' :: String -> Integer
+string2int'' [] = 0
+string2int'' x = toInteger (read x)
+
+{-
+ghci> string2int'' "35"
+35
+ghci> string2int'' ""
+0
+-}
+
+string2int''' :: String -> Int
+string2int''' [] = 0
+string2int''' (x:xs) = (ord x - ord '0') * (10 ^ length xs) + string2int''' xs
+
+{-
+ghci> string2int''' "35"
+35
+ghci> string2int''' ""
 0
 -}
 
@@ -633,6 +657,14 @@ suma1' = sum (map (\n -> 1/n) [1..100])
 suma1'' :: Double
 suma1'' = sum [1/n | n <- [1..100]]
 
+-- Z wykorzystaniem jednej z funkcji sk³adania zamiast 'sum'.
+suma1''' :: Double
+suma1''' = foldl (+) 0 [1/n | n <- [1..100]]
+
+-- Z wykorzystaniem jednej z funkcji sk³adania zamiast 'sum'.
+suma1'''' :: Double
+suma1'''' = foldr (+) 0 [1/n | n <- [1..100]]
+
 {-
 ghci> suma1
 5.187377517639621
@@ -640,6 +672,10 @@ ghci> suma1'
 5.187377517639621
 ghci> suma1''
 5.187377517639621
+ghci> suma1'''
+5.187377517639621
+ghci> suma1''''
+5.1873775176396215
 -}
 
 -- Z wykorzystaniem notacji lambda.
@@ -677,11 +713,11 @@ suma2 = sum (map (\i -> 1/(i^2)) [1..1000])
 suma2' :: Double
 suma2' = sum ([1/(i^2) | i <- [1..1000]])
 
--- Z wykorzystaniem jednej z funkcji sk³adania zamiast 'product'.
+-- Z wykorzystaniem jednej z funkcji sk³adania zamiast 'sum'.
 suma2'' :: Double
 suma2'' = foldl (+) 0 [1/(i^2) | i <- [1..1000]]
 
--- Z wykorzystaniem jednej z funkcji sk³adania zamiast 'product'.
+-- Z wykorzystaniem jednej z funkcji sk³adania zamiast 'sum'.
 suma2''' :: Double
 suma2''' = foldr (+) 0 [1/(i^2) | i <- [1..1000]]
 
@@ -704,11 +740,11 @@ suma3 = sum (map (\i -> (sqrt i) - (1/i)) [1..1000])
 suma3' :: Double
 suma3' = sum ([(sqrt i) - (1/i) | i <- [1..1000]])
 
--- Z wykorzystaniem jednej z funkcji sk³adania zamiast 'product'.
+-- Z wykorzystaniem jednej z funkcji sk³adania zamiast 'sum'.
 suma3'' :: Double
 suma3'' = foldl (+) 0 [(sqrt i) - (1/i) | i <- [1..1000]]
 
--- Z wykorzystaniem jednej z funkcji sk³adania zamiast 'product'.
+-- Z wykorzystaniem jednej z funkcji sk³adania zamiast 'sum'.
 suma3''' :: Double
 suma3''' = foldr (+) 0 [(sqrt i) - (1/i) | i <- [1..1000]]
 
