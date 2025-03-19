@@ -17,7 +17,7 @@ treeSize (Node _ left right) = 1 + treeSize left + treeSize right
 showTree :: Show a => Tree a -> String
 showTree (Null) = "()"
 showTree (Leaf x) = show x
-showTree (Node x left right) = show x ++ " L(" ++ showTree left ++ ")" ++ " R(" ++ showTree right ++ ")"
+showTree (Node x left right) = show x ++ " L(" ++ showTree left ++ ") R(" ++ showTree right ++ ")"
 
 add :: Ord a => a -> Tree a -> Tree a
 add n (Null) = Leaf n

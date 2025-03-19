@@ -2,7 +2,7 @@ module Math
 where
 
 infix 5 ~=
-a ~= b = (a - b < h) && (b - a < h)
+a ~= b = abs (a - b) < h
          where h = 0.000001
 
 cubeRoot :: Double -> Double
