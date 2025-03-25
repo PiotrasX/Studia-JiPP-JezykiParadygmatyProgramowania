@@ -20,16 +20,16 @@ showTree (Leaf x) = show x
 showTree (Node x left right) = show x ++ " L(" ++ showTree left ++ ") R(" ++ showTree right ++ ")"
 
 add :: Ord a => a -> Tree a -> Tree a
-add n (Null) = Leaf n
-add n (Leaf x) | n < x = Node x (Leaf n) Null
-               | n > x = Node x Null (Leaf n)
-               | otherwise = Leaf x
-add n (Node x left right) | n < x = Node x (add n left) right
-                          | n > x = Node x left (add n right)
-                          | otherwise = Node x left right
+add x (Null) = Leaf x
+add x (Leaf y) | x == y = Leaf y
+               | x < y = Node y (Leaf x) Null
+               | x > y = Node y Null (Leaf x)
+add x (Node y left right) | x == y = Node y left right
+                          | x < y = Node y (add x left) right
+                          | x > y = Node y left (add x right)
 
 elemTree :: Ord a => a -> Tree a -> Bool
-elemTree e (Null) = False
+elemTree _ (Null) = False
 elemTree e (Leaf x) = e == x
 elemTree e (Node x left right) | e == x = True
                                | e < x = elemTree e left
