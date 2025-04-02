@@ -48,7 +48,8 @@ tree2list (Node x left right) = tree2list left ++ [x] ++ tree2list right
 list2tree :: [a] -> Tree a
 list2tree [] = Null
 list2tree [x] = Leaf x
-list2tree xs = Node (xs !! mid) (list2tree left) (list2tree right)
-               where mid = length xs `div` 2
-                     left = take mid xs
-                     right = drop (mid + 1) xs
+list2tree list = Node x (list2tree left) (list2tree right)
+                 where mid = length list `div` 2
+                       x = list !! mid
+                       left = take mid list
+                       right = drop (mid + 1) list
