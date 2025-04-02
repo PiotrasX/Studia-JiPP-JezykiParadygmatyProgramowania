@@ -3,115 +3,270 @@ where
 
 import System.Environment
 
+{-
+Proponowane nazwy plików Ÿród³owych:
+
+lab6.1.1.hs
+lab6.1.2.hs
+lab6.1.3.hs
+
+Jeœli nazwa sk³ada siê z kropki, nale¿y dodaæ rozszerzenie .hs podczas zapisywania.
+Je¿eli nie zaznaczono inaczej, pozosta³e zadania powinny byæ zgodne z tym schematem nazewnictwa.
+-}
+
 -- 6.1
+
+{-
+ghci> :t putStrLn
+putStrLn :: String -> IO ()
+ghci> :t readLn
+readLn :: Read a => IO a
+ghci> :t getLine
+getLine :: IO String
+ghci> :t print
+print :: Show a => a -> IO ()
+ghci> :t read
+read :: Read a => String -> a
+ghci> :t show
+show :: Show a => a -> String
+-}
 
 silnia :: Int -> Int
 silnia n | n == 0 = 1
          | n > 0 = n * silnia (n - 1)
 
-{-
-main =
-  do putStrLn "Enter natural number: "
-     k <- readLn                       -- 1
-     let result = silnia k             -- 2
-     print result                      -- 3
--}
+silnia1 =
+     do putStrLn "Enter natural number: "
+        k <- readLn                        -- 1
+        let result = silnia k              -- 2
+        print result                       -- 3
 
 {-
-ghci> main
+ghci> silnia1
 Enter natural number:
-4
-24
+5
+120
 -}
 
-{-
-main =
-  do putStrLn "Enter natural number: "
-     k <- readLn                       -- 1
-     print (silnia k)                  -- 2
--}
+silnia2 =
+     do putStrLn "Enter natural number: "
+        k <- readLn                        -- 1
+        print (silnia k)                   -- 2
 
 {-
-ghci> main
+ghci> silnia2
 Enter natural number:
-4
-24
+5
+120
 -}
 
-{-
-main =
-  do putStrLn "Enter natural number: "
-     k <- getLine                      -- 1
-     let result = silnia (read k)      -- 2
-     putStrLn (show result)            -- 3
--}
+silnia3 =
+     do putStrLn "Enter natural number: "
+        k <- getLine                       -- 1
+        let result = silnia (read k)       -- 2
+        putStrLn (show result)             -- 3
 
 {-
-ghci> main
+ghci> silnia3
 Enter natural number:
-4
-24
+5
+120
+-}
+
+silnia4 =
+     do putStrLn "Enter natural number: "
+        k <- getLine                       -- 1
+        putStrLn (show (silnia (read k)))  -- 2
+
+{-
+ghci> silnia4
+Enter natural number:
+5
+120
+-}
+
+{-
+Napisz program, który przedstawia wynik w postaci:
+
+Enter natural number:
+5
+5! = 120
+-}
+
+silnia5 =
+     do putStrLn "Enter natural number: "
+        k <- getLine                           -- 1
+        let result = silnia (read k)           -- 2
+        putStrLn (k ++ "! = " ++ show result)  -- 3
+
+{-
+ghci> silnia5
+Enter natural number:
+5
+5! = 120
 -}
 
 -- 6.2
 
 {-
-main = do
-       [f,g] <- getArgs
-       s <- readFile f
-       writeFile g s
+ghci> :t readFile
+readFile :: FilePath -> IO String
+ghci> :t writeFile
+writeFile :: FilePath -> String -> IO ()
+ghci> :m +System.Environment
+ghci> :t getArgs
+getArgs :: IO [String]
 -}
 
 {-
+Ile argumentów przyjmuje funkcja readFile?
+Funkcja readFile przyjmuje 1 argument.
+
+Ile argumentów przyjmuje funkcja writeFile?
+Funkcja writeFile przyjmuje 2 argumenty.
+
+Ile argumentów przyjmuje funkcja getArgs?
+Funkcja getArgs przyjmuje 0 argumentów.
+
+
+Jaki jest typ wyniku funkcji readFile?
+Typ wyniku funkcji readFile to Monada IO String.
+
+Jaki jest typ wyniku funkcji writeFile?
+Typ wyniku funkcji writeFile to Monada IO () [Void].
+
+Jaki jest typ wyniku funkcji getArgs?
+Typ wyniku funkcji getArgs to Monada IO [String].
+-}
+
+{-
+main =
+  do [f,g] <- getArgs
+     s <- readFile f
+     writeFile g s
+-}
+
+{-
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt
+ Volume in drive C has no label.
+ Volume Serial Number is ECD1-84F5
+
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+02.04.2025  22:27                27 6_2_wejscie.txt
+02.04.2025  22:27                 0 6_2_wyjscie.txt
+               2 File(s)             27 bytes
+               0 Dir(s)  1 661 076 963 328 bytes free
+
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_2_wejscie.txt
+Ala ma kota :)
+Kot ma Ale!
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_2_wyjscie.txt
+
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>ghc --make lab6.hs -o lab6
 [1 of 2] Compiling Main             ( lab6.hs, lab6.o ) [Source file changed]
 [2 of 2] Linking lab6.exe [Objects changed]
+
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe 6_2_wejscie.txt 6_2_wyjscie.txt
 
-6_2_wejscie.txt:
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt
+ Volume in drive C has no label.
+ Volume Serial Number is ECD1-84F5
+
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+02.04.2025  22:27                27 6_2_wejscie.txt
+02.04.2025  22:36                27 6_2_wyjscie.txt
+               2 File(s)             54 bytes
+               0 Dir(s)  1 661 072 982 016 bytes free
+
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_2_wejscie.txt
 Ala ma kota :)
 Kot ma Ale!
-"
-
-6_2_wyjscie.txt przed:
-"
-"
-
-6_2_wyjscie.txt po:
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_2_wyjscie.txt
 Ala ma kota :)
 Kot ma Ale!
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>
 -}
 
 -- 6.3
 
 {-
+ghci> 'a' == 'a'
+True
+ghci> 'A' == 'a'
+False
+ghci> 'c' : "at"
+"cat"
+ghci> let f (x:xs) = (x,xs)
+ghci> f "cat"
+('c',"at")
+-}
+
+{-
+Rozwa¿ dwie ga³êzie funkcji clear z flagami:
+
+False - Do wywo³ania, jeœli bie¿¹cy znak znajduje siê poza znacznikiem html.
+True  - Do wywo³ania, jeœli bie¿¹cy znak znajduje siê wewn¹trz znacznika html.
+-}
+
 clear :: String -> Bool -> String
 clear [] b = []
 clear (x:xs) b | x == '<' = clear xs True
                | x == '>' = clear xs False
                | b = clear xs b
                | not b = x : clear xs b
+
+{-
+clear :: String -> Bool -> String
+clear ...
+clear ... False | Jeœli otrzymamy '<', to pomijamy go i zmieniamy tryb dzia³ania.
+                | W przeciwnym razie dodajemy bie¿¹cy znak do wyniku i kontynuujemy.
+clear ... True  | Jeœli otrzymamy '>', to pomijamy go i zmieniamy tryb dzia³ania.
+                | W przeciwnym razie pomijamy bie¿¹cy znak i kontynuujemy.
 -}
 
 {-
-main = do
-       [f,g] <- getArgs
-       s <- readFile f
-       let clear_html = clear s False
-       writeFile g clear_html
+main =
+  do [f,g] <- getArgs
+     s <- readFile f
+     let clear_html = clear s False
+     writeFile g clear_html
 -}
 
 {-
-C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>ghc --make lab6.hs -o lab6
-[1 of 2] Compiling Main             ( lab6.hs, lab6.o ) [Source file changed]
-[2 of 2] Linking lab6.exe [Objects changed]
-C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe 6_3_wejscie.html 6_3_wyjscie.txt
+ghci> clear "" False
+""
+ghci> clear "" True
+""
+ghci> clear "It is a sentence." False
+"It is a sentence."
+ghci> clear "It is a sentence." True
+""
+ghci> clear "<p>It is a paragraph." False
+"It is a paragraph."
+ghci> clear "<p>It is a paragraph." True
+"It is a paragraph."
+-}
 
-6_3_wejscie.html:
-"
+{-
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt *.html
+ Volume in drive C has no label.
+ Volume Serial Number is ECD1-84F5
+
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+02.04.2025  22:27                27 6_2_wejscie.txt
+02.04.2025  22:36                27 6_2_wyjscie.txt
+02.04.2025  22:50                 0 6_3_wyjscie.txt
+
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+12.03.2025  19:02               380 6_3_wejscie.html
+               4 File(s)            434 bytes
+               0 Dir(s)  1 661 075 009 536 bytes free
+
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_3_wejscie.html
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -123,19 +278,53 @@ C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe 6_3_wejscie.h
 
 <body>
     <h1>Witaj na stronie internetowej</h1>
-    <p>To jest przyk³adowy plik HTML</p>
+    <p>To jest przyk+éadowy plik HTML</p><p>Tu jest przyk+éadowy tekst</p>
     <button>Kliknij mnie</button>
 </body>
 
 </html>
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_3_wyjscie.txt
 
-6_3_wyjscie.txt przed:
-"
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>ghc --make lab6.hs -o lab6
+[1 of 2] Compiling Main             ( lab6.hs, lab6.o ) [Source file changed]
+[2 of 2] Linking lab6.exe [Objects changed]
 
-6_3_wyjscie.txt po:
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe 6_3_wejscie.html 6_3_wyjscie.txt
+
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt *.html
+ Volume in drive C has no label.
+ Volume Serial Number is ECD1-84F5
+
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+02.04.2025  22:27                27 6_2_wejscie.txt
+02.04.2025  22:36                27 6_2_wyjscie.txt
+02.04.2025  22:55               169 6_3_wyjscie.txt
+
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+12.03.2025  19:02               380 6_3_wejscie.html
+               4 File(s)            603 bytes
+               0 Dir(s)  1 661 074 186 240 bytes free
+
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_3_wejscie.html
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona internetowa</title>
+</head>
+
+<body>
+    <h1>Witaj na stronie internetowej</h1>
+    <p>To jest przyk+éadowy plik HTML</p><p>Tu jest przyk+éadowy tekst</p>
+    <button>Kliknij mnie</button>
+</body>
+
+</html>
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_3_wyjscie.txt
 
 
 
@@ -147,15 +336,14 @@ C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe 6_3_wejscie.h
 
 
     Witaj na stronie internetowej
-    To jest przyk³adowy plik HTML
+    To jest przyk+éadowy plik HTMLTu jest przyk+éadowy tekst
     Kliknij mnie
 
 
 
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>
 -}
 
-{-
 clear' :: String -> Bool -> String
 clear' [] b = []
 clear' (x:xs) b | x == '>' && length xs >= 1 && (xs !! 0) == '\n' = clear' xs True
@@ -164,7 +352,6 @@ clear' (x:xs) b | x == '>' && length xs >= 1 && (xs !! 0) == '\n' = clear' xs Tr
                 | b = clear' xs b
                 | not b && length xs >= 1 && (xs !! 0) == '<' = x : '\n' : clear' xs b
                 | not b = x : clear' xs b
--}
 
 {-
 main = do
@@ -175,13 +362,24 @@ main = do
 -}
 
 {-
-C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>ghc --make lab6.hs -o lab6
-[1 of 2] Compiling Main             ( lab6.hs, lab6.o ) [Source file changed]
-[2 of 2] Linking lab6.exe [Objects changed]
-C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe 6_3_wejscie.html 6_3_wyjscie.txt
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt *.html
+ Volume in drive C has no label.
+ Volume Serial Number is ECD1-84F5
 
-6_3_wejscie.html:
-"
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+02.04.2025  22:27                27 6_2_wejscie.txt
+02.04.2025  22:36                27 6_2_wyjscie.txt
+02.04.2025  23:01               169 6_3_wyjscie.txt
+02.04.2025  23:00                 0 6_3_wyjscie_v2.txt
+
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+12.03.2025  19:02               380 6_3_wejscie.html
+               5 File(s)            603 bytes
+               0 Dir(s)  1 661 071 486 976 bytes free
+
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_3_wejscie.html
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -193,26 +391,61 @@ C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe 6_3_wejscie.h
 
 <body>
     <h1>Witaj na stronie internetowej</h1>
-    <p>To jest przyk³adowy plik HTML</p>
+    <p>To jest przyk+éadowy plik HTML</p><p>Tu jest przyk+éadowy tekst</p>
     <button>Kliknij mnie</button>
 </body>
 
 </html>
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_3_wyjscie_v2.txt
 
-6_3_wyjscie.txt przed:
-"
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>ghc --make lab6.hs -o lab6
+[1 of 2] Compiling Main             ( lab6.hs, lab6.o ) [Source file changed]
+[2 of 2] Linking lab6.exe [Objects changed]
 
-6_3_wyjscie.txt po:
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe 6_3_wejscie.html 6_3_wyjscie_v2.txt
+
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt *.html
+ Volume in drive C has no label.
+ Volume Serial Number is ECD1-84F5
+
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+02.04.2025  22:27                27 6_2_wejscie.txt
+02.04.2025  22:36                27 6_2_wyjscie.txt
+02.04.2025  23:01               169 6_3_wyjscie.txt
+02.04.2025  23:05               125 6_3_wyjscie_v2.txt
+
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+12.03.2025  19:02               380 6_3_wejscie.html
+               5 File(s)            684 bytes
+               0 Dir(s)  1 661 070 221 312 bytes free
+
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_3_wejscie.html
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strona internetowa</title>
+</head>
+
+<body>
+    <h1>Witaj na stronie internetowej</h1>
+    <p>To jest przyk+éadowy plik HTML</p><p>Tu jest przyk+éadowy tekst</p>
+    <button>Kliknij mnie</button>
+</body>
+
+</html>
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_3_wyjscie_v2.txt
 Strona internetowa
 Witaj na stronie internetowej
-To jest przyk³adowy plik HTML
-Tu jest przyk³adowy tekst
+To jest przyk+éadowy plik HTML
+Tu jest przyk+éadowy tekst
 Kliknij mnie
 
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>
 -}
 
 -- 6.4

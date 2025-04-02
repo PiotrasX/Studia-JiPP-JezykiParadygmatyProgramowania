@@ -8,8 +8,8 @@ clear (x:xs) b | x == '<' = clear xs True
                | b = clear xs b
                | not b = x : clear xs b
 
-html2txt = do
-           [f,g] <- getArgs
-           s <- readFile f
-           let clear_html = clear s False
-           writeFile g clear_html
+html2txt =
+      do [f,g] <- getArgs
+         s <- readFile f
+         let clear_html = clear s False
+         writeFile g clear_html
