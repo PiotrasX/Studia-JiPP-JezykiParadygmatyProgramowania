@@ -1,0 +1,5 @@
+Strona internetowa
+Witaj na stronie internetowej
+To jest przykładowy plik HTML
+Tu jest przykładowy tekst
+Kliknij mnie
