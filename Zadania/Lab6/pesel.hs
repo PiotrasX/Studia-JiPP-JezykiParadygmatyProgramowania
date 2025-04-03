@@ -51,15 +51,15 @@ dekady (x:xs) | (x !! 0) == 0 = (1,0,0,0,0,0,0,0,0,0) +.. dekady xs
 dekady2list :: (Int, Int, Int, Int, Int, Int, Int, Int, Int, Int) -> [Int]
 dekady2list (a, b, c, d, e, f, g, h, i, j) = [a, b, c, d, e, f, g, h, i, j]
 
-pesel = do
-        [f] <- getArgs
-        s <- readFile f
-        let pesele = divideFile s ""
-        let cyfry_pesele = dividePesele pesele
-        let podzial_plci = plec cyfry_pesele
-        putStrLn ("Kobiet: " ++ show (fst podzial_plci))
-        putStrLn ("Mezczyzn: " ++ show (snd podzial_plci))
-        let osoby_grudzien = grudzien cyfry_pesele
-        putStrLn ("Osoby urodzone w grudniu: " ++ show osoby_grudzien)
-        let osoby_dekady = dekady2list (dekady cyfry_pesele)
-        putStrLn ("Liczba osob urodzona w poszczegolnych dekadach: " ++ show osoby_dekady)
+pesel = 
+   do [f] <- getArgs
+      s <- readFile f
+      let pesele = divideFile s ""
+      let cyfry_pesele = dividePesele pesele
+      let podzial_plci = plec cyfry_pesele
+      putStrLn ("Kobiet: " ++ show (fst podzial_plci))
+      putStrLn ("Mezczyzn: " ++ show (snd podzial_plci))
+      let osoby_grudzien = grudzien cyfry_pesele
+      putStrLn ("Osoby urodzone w grudniu: " ++ show osoby_grudzien)
+      let osoby_dekady = dekady2list (dekady cyfry_pesele)
+      putStrLn ("Liczba osob urodzona w poszczegolnych dekadach: " ++ show osoby_dekady)

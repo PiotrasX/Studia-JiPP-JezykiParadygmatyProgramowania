@@ -153,10 +153,10 @@ C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt
 
  Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
 
-02.04.2025  22:27                27 6_2_wejscie.txt
-02.04.2025  22:27                 0 6_2_wyjscie.txt
+03.04.2025  10:13                27 6_2_wejscie.txt
+03.04.2025  10:13                 0 6_2_wyjscie.txt
                2 File(s)             27 bytes
-               0 Dir(s)  1 661 076 963 328 bytes free
+               0 Dir(s)  1 662 405 181 440 bytes free
 
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_2_wejscie.txt
 Ala ma kota :)
@@ -175,10 +175,10 @@ C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt
 
  Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
 
-02.04.2025  22:27                27 6_2_wejscie.txt
-02.04.2025  22:36                27 6_2_wyjscie.txt
+03.04.2025  10:13                27 6_2_wejscie.txt
+03.04.2025  10:14                27 6_2_wyjscie.txt
                2 File(s)             54 bytes
-               0 Dir(s)  1 661 072 982 016 bytes free
+               0 Dir(s)  1 662 407 860 224 bytes free
 
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_2_wejscie.txt
 Ala ma kota :)
@@ -256,15 +256,16 @@ C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt *.html
 
  Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
 
-02.04.2025  22:27                27 6_2_wejscie.txt
-02.04.2025  22:36                27 6_2_wyjscie.txt
-02.04.2025  22:50                 0 6_3_wyjscie.txt
+03.04.2025  10:13                27 6_2_wejscie.txt
+03.04.2025  10:14                27 6_2_wyjscie.txt
+03.04.2025  10:19                 0 6_3_wyjscie.txt
+03.04.2025  10:19                 0 6_3_wyjscie_v2.txt
 
  Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
 
 12.03.2025  19:02               380 6_3_wejscie.html
-               4 File(s)            434 bytes
-               0 Dir(s)  1 661 075 009 536 bytes free
+               5 File(s)            434 bytes
+               0 Dir(s)  1 662 405 689 344 bytes free
 
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_3_wejscie.html
 <!DOCTYPE html>
@@ -297,15 +298,16 @@ C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt *.html
 
  Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
 
-02.04.2025  22:27                27 6_2_wejscie.txt
-02.04.2025  22:36                27 6_2_wyjscie.txt
-02.04.2025  22:55               169 6_3_wyjscie.txt
+03.04.2025  10:13                27 6_2_wejscie.txt
+03.04.2025  10:14                27 6_2_wyjscie.txt
+03.04.2025  10:21               169 6_3_wyjscie.txt
+03.04.2025  10:19                 0 6_3_wyjscie_v2.txt
 
  Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
 
 12.03.2025  19:02               380 6_3_wejscie.html
-               4 File(s)            603 bytes
-               0 Dir(s)  1 661 074 186 240 bytes free
+               5 File(s)            603 bytes
+               0 Dir(s)  1 662 405 591 040 bytes free
 
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_3_wejscie.html
 <!DOCTYPE html>
@@ -354,11 +356,11 @@ clear' (x:xs) b | x == '>' && length xs >= 1 && (xs !! 0) == '\n' = clear' xs Tr
                 | not b = x : clear' xs b
 
 {-
-main = do
-       [f,g] <- getArgs
-       s <- readFile f
-       let clear_html = clear' s False
-       writeFile g clear_html
+main = 
+  do [f,g] <- getArgs
+     s <- readFile f
+     let clear_html = clear' s False
+     writeFile g clear_html
 -}
 
 {-
@@ -368,16 +370,16 @@ C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt *.html
 
  Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
 
-02.04.2025  22:27                27 6_2_wejscie.txt
-02.04.2025  22:36                27 6_2_wyjscie.txt
-02.04.2025  23:01               169 6_3_wyjscie.txt
-02.04.2025  23:00                 0 6_3_wyjscie_v2.txt
+03.04.2025  10:13                27 6_2_wejscie.txt
+03.04.2025  10:14                27 6_2_wyjscie.txt
+03.04.2025  10:21               169 6_3_wyjscie.txt
+03.04.2025  10:19                 0 6_3_wyjscie_v2.txt
 
  Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
 
 12.03.2025  19:02               380 6_3_wejscie.html
                5 File(s)            603 bytes
-               0 Dir(s)  1 661 071 486 976 bytes free
+               0 Dir(s)  1 662 405 943 296 bytes free
 
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_3_wejscie.html
 <!DOCTYPE html>
@@ -410,16 +412,16 @@ C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt *.html
 
  Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
 
-02.04.2025  22:27                27 6_2_wejscie.txt
-02.04.2025  22:36                27 6_2_wyjscie.txt
-02.04.2025  23:01               169 6_3_wyjscie.txt
-02.04.2025  23:05               125 6_3_wyjscie_v2.txt
+03.04.2025  10:13                27 6_2_wejscie.txt
+03.04.2025  10:14                27 6_2_wyjscie.txt
+03.04.2025  10:21               169 6_3_wyjscie.txt
+03.04.2025  10:24               125 6_3_wyjscie_v2.txt
 
  Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
 
 12.03.2025  19:02               380 6_3_wejscie.html
-               5 File(s)            684 bytes
-               0 Dir(s)  1 661 070 221 312 bytes free
+               5 File(s)            728 bytes
+               0 Dir(s)  1 662 405 955 584 bytes free
 
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_3_wejscie.html
 <!DOCTYPE html>
@@ -450,15 +452,12 @@ C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>
 
 -- 6.4
 
-{-
 merge :: Ord a => [a] -> [a] -> [a]
 merge [] ys = ys
 merge xs [] = xs
 merge (x:xs) (y:ys) | x <= y = x : merge xs (y:ys)
                     | otherwise = y : merge (x:xs) ys
--}
 
-{-
 mergeSort :: Ord a => [a] -> [a]
 mergeSort xs | len <= 1 = xs
              | otherwise = merge (mergeSort ys) (mergeSort zs)
@@ -466,139 +465,194 @@ mergeSort xs | len <= 1 = xs
                      half = len `div` 2
                      ys = take half xs
                      zs = drop half xs
+
+{-
+main =
+  do [f,g] <- getArgs
+     s <- readFile f
+     let lines_tekst = lines s
+     let sort = mergeSort lines_tekst
+     let unlines_tekst = unlines sort
+     writeFile g unlines_tekst
 -}
 
 {-
-main = do
-       [f,g] <- getArgs
-       s <- readFile f
-       let lines_tekst = lines s
-       let sort = mergeSort lines_tekst
-       let unlines_tekst = unlines sort
-       writeFile g unlines_tekst
--}
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt
+ Volume in drive C has no label.
+ Volume Serial Number is ECD1-84F5
 
-{-
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+03.04.2025  10:13                27 6_2_wejscie.txt
+03.04.2025  10:14                27 6_2_wyjscie.txt
+03.04.2025  10:21               169 6_3_wyjscie.txt
+03.04.2025  10:24               125 6_3_wyjscie_v2.txt
+03.04.2025  10:40               147 6_4_wejscie.txt
+03.04.2025  10:40                 0 6_4_wyjscie.txt
+               6 File(s)            495 bytes
+               0 Dir(s)  1 662 393 069 568 bytes free
+
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_4_wejscie.txt
+Ala ma kota
+Kot ma Ale
+Ale to wszystko si¦Ö tutaj rozgrywa
+Taka to ju+- jest rozgrywka
+Kotek +éapie Ale
+Hania +éapie Kotka
+Ala +éapie Hanie
+
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_4_wyjscie.txt
+
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>ghc --make lab6.hs -o lab6
 [1 of 2] Compiling Main             ( lab6.hs, lab6.o ) [Source file changed]
 [2 of 2] Linking lab6.exe [Objects changed]
+
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe 6_4_wejscie.txt 6_4_wyjscie.txt
 
-6_4_wejscie.txt:
-"
-Ala ma kota :)
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt
+ Volume in drive C has no label.
+ Volume Serial Number is ECD1-84F5
+
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+03.04.2025  10:13                27 6_2_wejscie.txt
+03.04.2025  10:14                27 6_2_wyjscie.txt
+03.04.2025  10:21               169 6_3_wyjscie.txt
+03.04.2025  10:24               125 6_3_wyjscie_v2.txt
+03.04.2025  10:40               147 6_4_wejscie.txt
+03.04.2025  10:41               147 6_4_wyjscie.txt
+               6 File(s)            642 bytes
+               0 Dir(s)  1 662 393 069 568 bytes free
+
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_4_wejscie.txt
+Ala ma kota
 Kot ma Ale
-Ale to wszystko siê tutaj rozgrywa
-Taka to ju¿ jest rozgrywka
-Kotek ³apie Ale
-Hania ³apie Kotka
-Ala ³apie Hanie
+Ale to wszystko si¦Ö tutaj rozgrywa
+Taka to ju+- jest rozgrywka
+Kotek +éapie Ale
+Hania +éapie Kotka
+Ala +éapie Hanie
 
-"
-
-6_4_wyjscie.txt przed:
-"
-"
-
-6_4_wyjscie.txt po:
-"
-Ala ma kota :)
-Ala ³apie Hanie
-Ale to wszystko siê tutaj rozgrywa
-Hania ³apie Kotka
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_4_wyjscie.txt
+Ala ma kota
+Ala +éapie Hanie
+Ale to wszystko si¦Ö tutaj rozgrywa
+Hania +éapie Kotka
 Kot ma Ale
-Kotek ³apie Ale
-Taka to ju¿ jest rozgrywka
+Kotek +éapie Ale
+Taka to ju+- jest rozgrywka
 
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>
 -}
 
 -- 6.5
 
-{-
 search :: [[Char]] -> [Char] -> Int -> [Int]
 search [] s i = []
 search (y:ys) s i | y == s = [i] ++ search ys s i
                   | otherwise = search ys s i
--}
 
-{-
 searchWord :: [[Char]] -> [Char] -> Int -> [Int]
 searchWord [] s i = []
 searchWord (x:xs) s i = (search ys s i) ++ (searchWord xs s (i + 1))
                         where ys = words x
+
+{-
+main =
+  do [f,g] <- getArgs
+     let slowo = f
+     s <- readFile g
+     let lines_tekst = lines s
+     let linie_slowa = searchWord lines_tekst slowo 1
+     print(linie_slowa)
 -}
 
 {-
-main = do
-       [f,g] <- getArgs
-       let slowo = f
-       s <- readFile g
-       let lines_tekst = lines s
-       let linie_slowa = searchWord lines_tekst slowo 1
-       print(linie_slowa)
--}
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>dir *.txt
+ Volume in drive C has no label.
+ Volume Serial Number is ECD1-84F5
 
-{-
+ Directory of C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6
+
+03.04.2025  10:13                27 6_2_wejscie.txt
+03.04.2025  10:14                27 6_2_wyjscie.txt
+03.04.2025  10:21               169 6_3_wyjscie.txt
+03.04.2025  10:24               125 6_3_wyjscie_v2.txt
+03.04.2025  10:40               147 6_4_wejscie.txt
+03.04.2025  10:41               147 6_4_wyjscie.txt
+12.03.2025  20:30               131 6_5_wejscie.txt
+               7 File(s)            773 bytes
+               0 Dir(s)  1 662 400 716 800 bytes free
+
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>type 6_5_wejscie.txt
+Ala ma kota Mruczka
+Mruczek lubi mleko
+Mleko si¦Ö rozla+éo
+Ale Mruczek wyliza+é mleko
+Teraz kot +éapie Ale
+A Ala +éapie kota
+
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>ghc --make lab6.hs -o lab6
 [1 of 2] Compiling Main             ( lab6.hs, lab6.o ) [Source file changed]
 [2 of 2] Linking lab6.exe [Objects changed]
+
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe Mruczek 6_5_wejscie.txt
 [2,4]
+
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe Ala 6_5_wejscie.txt
 [1,6]
+
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe kot 6_5_wejscie.txt
 [5]
+
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>lab6.exe kotek 6_5_wejscie.txt
 []
 
-6_5_wejscie.txt:
-"
-Ala ma kota Mruczka
-Mruczek lubi mleko
-Mleko siê rozla³o
-Ale Mruczek wyliza³ mleko
-Teraz kot ³apie Ale
-A Ala ³apie kota
-
-"
+C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>
 -}
 
 -- 6.6
 
 {-
+ghci> :t elem
+elem :: (Foldable t, Eq a) => a -> t a -> Bool
+ghci> elem 1 [1,3,5]
+True
+ghci> elem 2 [1,3,5]
+False
+ghci> let f [a,b,_] = (a, b)
+ghci> f "cat"
+('c','a')
+ghci> f "zonk"
+*** Exception: <interactive>:4:5-22: Non-exhaustive patterns in function f
+
+ghci> lines "It is the first line.\nIt is the second line."
+["It is the first line.","It is the second line."]
+-}
+
 divideFile :: [Char] -> [Char] -> [[Char]]
 divideFile [] _ = []
 divideFile (x:xs) s | x == '\n' = [take 11 word] ++ divideFile xs []
                     | xs == [] = [word] ++ divideFile xs []
                     | otherwise = divideFile xs word
                       where word = s ++ [x]
--}
 
-{-
 dividePesel :: [Char] -> [Int]
 dividePesel [] = []
 dividePesel (x:xs) = [read [x] :: Int] ++ dividePesel xs
--}
 
-{-
 dividePesele :: [[Char]] -> [[Int]]
 dividePesele [] = []
 dividePesele (x:xs) = [dividePesel x] ++ dividePesele xs
--}
 
-{-
 infixl 6 +.
 (+.) :: (Int, Int) -> (Int, Int) -> (Int, Int)
 (a, b) +. (c, d) = (a + c, b + d)
--}
 
-{-
 plec :: [[Int]] -> (Int, Int)
 plec [] = (0,0)
 plec (x:xs) | (x !! 9) `mod` 2 == 0 = (1,0) +. plec xs
             | otherwise = (0,1) +. plec xs
--}
 
 {-
 grudzien :: [[Int]] -> Int

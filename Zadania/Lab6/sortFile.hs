@@ -14,10 +14,10 @@ mergeSort xs | len <= 1 = xs
                      ys = take half xs
                      zs = drop half xs
 
-sortFile = do
-           [f,g] <- getArgs
-           s <- readFile f
-           let lines_tekst = lines s
-           let sort = mergeSort lines_tekst
-           let unlines_tekst = unlines sort
-           writeFile g unlines_tekst
+sortFile = 
+      do [f,g] <- getArgs
+         s <- readFile f
+         let lines_tekst = lines s
+         let sort = mergeSort lines_tekst
+         let unlines_tekst = unlines sort
+         writeFile g unlines_tekst

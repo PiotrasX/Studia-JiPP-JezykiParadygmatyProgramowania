@@ -2,14 +2,14 @@
 
 
 
-
-
+    
+    
     Strona internetowa
 
 
 
     Witaj na stronie internetowej
-    To jest przyk+éadowy plik HTMLTu jest przyk+éadowy tekst
+    To jest przykładowy plik HTMLTu jest przykładowy tekst
     Kliknij mnie
 
 
