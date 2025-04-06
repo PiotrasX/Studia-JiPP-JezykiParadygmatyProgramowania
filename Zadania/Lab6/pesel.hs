@@ -1,6 +1,8 @@
 module Pesel
 where
 
+import Data.Char
+
 divideFile :: [Char] -> [Char] -> [[Char]]
 divideFile [] _ = []
 divideFile (x:xs) s | x == '\n' = [take 11 word] ++ divideFile xs []
@@ -8,58 +10,57 @@ divideFile (x:xs) s | x == '\n' = [take 11 word] ++ divideFile xs []
                     | otherwise = divideFile xs word
                       where word = s ++ [x]
 
-dividePesel :: [Char] -> [Int]
-dividePesel [] = []
-dividePesel (x:xs) = [read [x] :: Int] ++ dividePesel xs
+womenCount :: [[Char]] -> Int
+womenCount [] = 0
+womenCount (x:xs) | (ord (x !! 9) - ord '0') `mod` 2 == 0 = 1 + womenCount xs
+                  | otherwise = womenCount xs
 
-dividePesele :: [[Char]] -> [[Int]]
-dividePesele [] = []
-dividePesele (x:xs) = [dividePesel x] ++ dividePesele xs
-
-infixl 6 +.
-(+.) :: (Int, Int) -> (Int, Int) -> (Int, Int)
-(a, b) +. (c, d) = (a + c, b + d)
-
-plec :: [[Int]] -> (Int, Int)
-plec [] = (0,0)
-plec (x:xs) | (x !! 9) `mod` 2 == 0 = (1,0) +. plec xs
-            | otherwise = (0,1) +. plec xs
-
-grudzien :: [[Int]] -> Int
+grudzien :: [[Char]] -> Int
 grudzien [] = 0
-grudzien (x:xs) | (x !! 2) == 1 && (x !! 3) == 2 = 1 + grudzien xs
+grudzien (x:xs) | (x !! 2) == '1' && (x !! 3) == '2' = 1 + grudzien xs
                 | otherwise = grudzien xs
 
-infixl 6 +..
-(+..) :: (Int, Int, Int, Int, Int, Int, Int, Int, Int, Int) -> (Int, Int, Int, Int, Int, Int, Int, Int, Int, Int) -> (Int, Int, Int, Int, Int, Int, Int, Int, Int, Int)
-(a1, b1, c1, d1, e1, f1, g1, h1, i1, j1) +.. (a2, b2, c2, d2, e2, f2, g2, h2, i2, j2) = (a1 + a2, b1 + b2, c1 + c2, d1 + d2, e1 + e2, f1 + f2, g1 + g2, h1 + h2, i1 + i2, j1 + j2)
+decCount :: [[Char]] -> [Int] -> [Int]
+decCount [] ds = ds
+decCount ([a,b,_,_,_,_,_,_,_,_,_]:xs) [d1,d2,d3,d4,d5,d6,d7,d8,d9,d10]
+         | a == '0' && b == '0' = decCount xs [d1,d2,d3,d4,d5,d6,d7,d8,d9,d10 + 1]
+         | a == '0' = decCount xs [d1 + 1,d2,d3,d4,d5,d6,d7,d8,d9,d10]
+         | a == '1' && b == '0' = decCount xs [d1 + 1,d2,d3,d4,d5,d6,d7,d8,d9,d10]
+         | a == '1' = decCount xs [d1,d2 + 1,d3,d4,d5,d6,d7,d8,d9,d10]
+         | a == '2' && b == '0' = decCount xs [d1,d2 + 1,d3,d4,d5,d6,d7,d8,d9,d10]
+         | a == '2' = decCount xs [d1,d2,d3 + 1,d4,d5,d6,d7,d8,d9,d10]
+         | a == '3' && b == '0' = decCount xs [d1,d2,d3 + 1,d4,d5,d6,d7,d8,d9,d10]
+         | a == '3' = decCount xs [d1,d2,d3,d4 + 1,d5,d6,d7,d8,d9,d10]
+         | a == '4' && b == '0' = decCount xs [d1,d2,d3,d4 + 1,d5,d6,d7,d8,d9,d10]
+         | a == '4' = decCount xs [d1,d2,d3,d4,d5 + 1,d6,d7,d8,d9,d10]
+         | a == '5' && b == '0' = decCount xs [d1,d2,d3,d4,d5 + 1,d6,d7,d8,d9,d10]
+         | a == '5' = decCount xs [d1,d2,d3,d4,d5,d6 + 1,d7,d8,d9,d10]
+         | a == '6' && b == '0' = decCount xs [d1,d2,d3,d4,d5,d6 + 1,d7,d8,d9,d10]
+         | a == '6' = decCount xs [d1,d2,d3,d4,d5,d6,d7 + 1,d8,d9,d10]
+         | a == '7' && b == '0' = decCount xs [d1,d2,d3,d4,d5,d6,d7 + 1,d8,d9,d10]
+         | a == '7' = decCount xs [d1,d2,d3,d4,d5,d6,d7,d8 + 1,d9,d10]
+         | a == '8' && b == '0' = decCount xs [d1,d2,d3,d4,d5,d6,d7,d8 + 1,d9,d10]
+         | a == '8' = decCount xs [d1,d2,d3,d4,d5,d6,d7,d8,d9 + 1,d10]
+         | a == '9' && b == '0' = decCount xs [d1,d2,d3,d4,d5,d6,d7,d8,d9 + 1,d10]
+         | a == '9' = decCount xs [d1,d2,d3,d4,d5,d6,d7,d8,d9,d10 + 1]
 
-dekady :: [[Int]] -> (Int, Int, Int, Int, Int, Int, Int, Int, Int, Int)
-dekady [] = (0,0,0,0,0,0,0,0,0,0)
-dekady (x:xs) | (x !! 0) == 0 = (1,0,0,0,0,0,0,0,0,0) +.. dekady xs
-              | (x !! 0) == 1 = (0,1,0,0,0,0,0,0,0,0) +.. dekady xs
-              | (x !! 0) == 2 = (0,0,1,0,0,0,0,0,0,0) +.. dekady xs
-              | (x !! 0) == 3 = (0,0,0,1,0,0,0,0,0,0) +.. dekady xs
-              | (x !! 0) == 4 = (0,0,0,0,1,0,0,0,0,0) +.. dekady xs
-              | (x !! 0) == 5 = (0,0,0,0,0,1,0,0,0,0) +.. dekady xs
-              | (x !! 0) == 6 = (0,0,0,0,0,0,1,0,0,0) +.. dekady xs
-              | (x !! 0) == 7 = (0,0,0,0,0,0,0,1,0,0) +.. dekady xs
-              | (x !! 0) == 8 = (0,0,0,0,0,0,0,0,1,0) +.. dekady xs
-              | (x !! 0) == 9 = (0,0,0,0,0,0,0,0,0,1) +.. dekady xs
-              | otherwise = dekady xs
-
-dekady2list :: (Int, Int, Int, Int, Int, Int, Int, Int, Int, Int) -> [Int]
-dekady2list (a, b, c, d, e, f, g, h, i, j) = [a, b, c, d, e, f, g, h, i, j]
-
-pesel = 
+pesel =
    do [f] <- getArgs
       s <- readFile f
       let pesele = divideFile s ""
-      let cyfry_pesele = dividePesele pesele
-      let podzial_plci = plec cyfry_pesele
-      putStrLn ("Kobiet: " ++ show (fst podzial_plci))
-      putStrLn ("Mezczyzn: " ++ show (snd podzial_plci))
-      let osoby_grudzien = grudzien cyfry_pesele
-      putStrLn ("Osoby urodzone w grudniu: " ++ show osoby_grudzien)
-      let osoby_dekady = dekady2list (dekady cyfry_pesele)
-      putStrLn ("Liczba osob urodzona w poszczegolnych dekadach: " ++ show osoby_dekady)
+      let liczba_kobiet = womenCount pesele
+      putStrLn ("Liczba kobiet: " ++ show liczba_kobiet)
+      let osoby_grudzien = grudzien pesele
+      putStrLn ("\nLiczba osob urodzone w grudniu: " ++ show osoby_grudzien)
+      let osoby_dekady = decCount pesele [0,0,0,0,0,0,0,0,0,0]
+      putStrLn ("\nLiczba osob urodzona w poszczegolnych dekadach: ")
+      putStrLn ("1901 - 1910: " ++ show (osoby_dekady !! 0))
+      putStrLn ("1911 - 1920: " ++ show (osoby_dekady !! 1))
+      putStrLn ("1921 - 1930: " ++ show (osoby_dekady !! 2))
+      putStrLn ("1931 - 1940: " ++ show (osoby_dekady !! 3))
+      putStrLn ("1941 - 1950: " ++ show (osoby_dekady !! 4))
+      putStrLn ("1951 - 1960: " ++ show (osoby_dekady !! 5))
+      putStrLn ("1961 - 1970: " ++ show (osoby_dekady !! 6))
+      putStrLn ("1971 - 1980: " ++ show (osoby_dekady !! 7))
+      putStrLn ("1981 - 1990: " ++ show (osoby_dekady !! 8))
+      putStrLn ("1991 - 2000: " ++ show (osoby_dekady !! 9))
