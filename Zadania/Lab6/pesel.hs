@@ -45,8 +45,8 @@ decCount ([a,b,_,_,_,_,_,_,_,_,_]:xs) [d1,d2,d3,d4,d5,d6,d7,d8,d9,d10]
          | a == '9' = decCount xs [d1,d2,d3,d4,d5,d6,d7,d8,d9,d10 + 1]
 
 pesel =
-   do [f] <- getArgs
-      s <- readFile f
+   do [input] <- getArgs
+      s <- readFile input
       let pesele = divideFile s ""
       let liczba_kobiet = womenCount pesele
       putStrLn ("Liczba kobiet: " ++ show liczba_kobiet)

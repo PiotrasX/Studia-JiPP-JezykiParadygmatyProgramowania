@@ -2,11 +2,11 @@ module Html2txt
 where
 
 clear :: String -> Bool -> String
-clear [] b = []
-clear (x:xs) b | x == '<' = clear xs True
-               | x == '>' = clear xs False
-               | b = clear xs b
-               | not b = x : clear xs b
+clear [] _ = []
+clear (x:xs) False | x == '<' = clear xs True
+                   | otherwise = x : clear xs False
+clear (x:xs) True  | x == '>' = clear xs False
+                   | otherwise = clear xs True
 
 html2txt =
       do [f,g] <- getArgs

@@ -15,6 +15,9 @@ Jeœli nazwa sk³ada siê z kropki, nale¿y dodaæ rozszerzenie .hs podczas zapisywan
 Je¿eli nie zaznaczono inaczej, pozosta³e zadania powinny byæ zgodne z tym schematem nazewnictwa.
 -}
 
+main =
+  do putStrLn("Test main")
+
 -- 6.1
 
 {-
@@ -211,13 +214,6 @@ False - Do wywo³ania, jeœli bie¿¹cy znak znajduje siê poza znacznikiem html.
 True  - Do wywo³ania, jeœli bie¿¹cy znak znajduje siê wewn¹trz znacznika html.
 -}
 
-clear :: String -> Bool -> String
-clear [] b = []
-clear (x:xs) b | x == '<' = clear xs True
-               | x == '>' = clear xs False
-               | b = clear xs b
-               | not b = x : clear xs b
-
 {-
 clear :: String -> Bool -> String
 clear ...
@@ -227,12 +223,19 @@ clear ... True  | Jeœli otrzymamy '>', to pomijamy go i zmieniamy tryb dzia³ania
                 | W przeciwnym razie pomijamy bie¿¹cy znak i kontynuujemy.
 -}
 
+clear :: String -> Bool -> String
+clear [] _ = []
+clear (x:xs) False | x == '<' = clear xs True
+                   | otherwise = x : clear xs False
+clear (x:xs) True  | x == '>' = clear xs False
+                   | otherwise = clear xs True
+
 {-
 main =
-  do [f,g] <- getArgs
-     s <- readFile f
-     let clear_html = clear s False
-     writeFile g clear_html
+  do [input,output] <- getArgs
+     html <- readFile input
+     let text = clear html False
+     writeFile output text
 -}
 
 {-
@@ -349,19 +352,26 @@ C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>
 
 clear' :: String -> Bool -> String
 clear' [] b = []
-clear' (x:xs) b | x == '>' && length xs >= 1 && (xs !! 0) == '\n' = clear' xs True
-                | x == '<' = clear' xs True
+clear' (x:xs) b | x == '<' = clear' xs True
                 | x == '>' = clear' xs False
                 | b = clear' xs b
-                | not b && length xs >= 1 && (xs !! 0) == '<' = x : '\n' : clear' xs b
                 | not b = x : clear' xs b
+
+clear'' :: String -> Bool -> String
+clear'' [] b = []
+clear'' (x:xs) b | x == '>' && length xs >= 1 && (xs !! 0) == '\n' = clear'' xs True
+                 | x == '<' = clear'' xs True
+                 | x == '>' = clear'' xs False
+                 | b = clear'' xs b
+                 | not b && length xs >= 1 && (xs !! 0) == '<' = x : '\n' : clear'' xs b
+                 | not b = x : clear'' xs b
 
 {-
 main = 
-  do [f,g] <- getArgs
-     s <- readFile f
-     let clear_html = clear' s False
-     writeFile g clear_html
+  do [input,output] <- getArgs
+     html <- readFile input
+     let text = clear'' html False
+     writeFile output text
 -}
 
 {-
@@ -709,9 +719,10 @@ Jaki jest cel drugiego argumentu funkcji decCount?
 Cel drugiego argumentu funkcji decCount to zliczanie osób urodzonych w poszczególnych dekadach.
 -}
 
+{-
 main =
-  do [f] <- getArgs
-     s <- readFile f
+  do [input] <- getArgs
+     s <- readFile input
      let pesele = divideFile s ""
      let liczba_kobiet_1 = womenCount pesele
      let liczba_kobiet_2 = womenCount' pesele
@@ -733,6 +744,7 @@ main =
      putStrLn ("1971 - 1980: " ++ show (osoby_dekady !! 7))
      putStrLn ("1981 - 1990: " ++ show (osoby_dekady !! 8))
      putStrLn ("1991 - 2000: " ++ show (osoby_dekady !! 9))
+-}
 
 {-
 C:\Users\Piotr\Desktop\Studia\Semestr 6\JiPP\Zadania\Lab6>ghc --make lab6.hs -o lab6
