@@ -257,7 +257,7 @@ Regu³ê potomek mo¿na okreœliæ na 2 sposoby.
 */
 
 potomek2(X,Y) :- rodzic(Y,X).
-potomek2(X,Y) :- rodzic(Z,X), potomek(Z,Y).
+potomek2(X,Y) :- rodzic(Z,X), potomek2(Z,Y).
 
 /*
 3 ?- potomek2(ola,tomek).
@@ -311,10 +311,56 @@ potomek3(X,Y) :- potomek3(X,Z), rodzic(Y,Z). % Nie jest poprawne umieszczanie wy
 /*
 7 ?- potomek3(ola,tomek).
 ERROR: Stack limit (1.0Gb) exceeded
+ERROR:   Stack sizes: local: 0.9Gb, global: 85.4Mb, trail: 0Kb
+ERROR:   Stack depth: 11,183,790, last-call: 0%, Choice points: 4
+ERROR:   Probable infinite recursion (cycle):
+ERROR:     [11,183,790] user:potomek3(ola, _22376066)
+ERROR:     [11,183,789] user:potomek3(ola, _22376086)
 
 8 ?- potomek3(radek,tomek).
 true ;
 ERROR: Stack limit (1.0Gb) exceeded
+ERROR:   Stack sizes: local: 0.9Gb, global: 85.3Mb, trail: 0Kb
+ERROR:   Stack depth: 11,184,210, last-call: 0%, Choice points: 5
+ERROR:   Probable infinite recursion (cycle):
+ERROR:     [11,184,209] user:potomek3(radek, _22371274)
+ERROR:     [11,184,208] user:potomek3(radek, _22371294)
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? no debug
+
+9 ?- potomek3(X,Y).
+X = max,
+Y = ola ;
+X = max,
+Y = tomek ;
+X = lila,
+Y = tomek ;
+X = ania,
+Y = max ;
+X = kasia,
+Y = max ;
+X = radek,
+Y = kasia ;
+X = ania,
+Y = ola ;
+X = ania,
+Y = tomek ;
+X = kasia,
+Y = ola ;
+X = kasia,
+Y = tomek ;
+X = radek,
+Y = max ;
+X = radek,
+Y = ola ;
+X = radek,
+Y = tomek ;
+ERROR: Stack limit (1.0Gb) exceeded
+ERROR:   Stack sizes: local: 0.9Gb, global: 85.4Mb, trail: 0Kb
+ERROR:   Stack depth: 11,183,881, last-call: 0%, Choice points: 6
+ERROR:   Probable infinite recursion (cycle):
+ERROR:     [11,183,880] user:potomek3(ania, _22375446)
+ERROR:     [11,183,879] user:potomek3(ania, _22375466)
+^  Exception: (4) setup_call_cleanup('$toplevel':notrace(call_repl_loop_hook(begin, 0)), '$toplevel':'$query_loop'(0), '$toplevel':notrace(call_repl_loop_hook(end, 0))) ? no debug
 */
 
 % potomkowie(X) - Regu³a wypisuje na ekranie wszystkich potomków X (ka¿dy w oddzielnej linii) i zawsze koñczy siê sukcesem. Nale¿y skorzystaæ z predykatu fail do wyszukania wszystkich rozwi¹zañ.
@@ -326,13 +372,13 @@ potomkowie(X) :-
 potomkowie(_). % Klauzula, ¿eby zawsze zakoñczyæ sukcesem.
 
 /*
-9 ?- potomkowie(max).
+10 ?- potomkowie(max).
 ania
 kasia
 radek
 true.
 
-10 ?- potomkowie(tomek).
+11 ?- potomkowie(tomek).
 max
 lila
 ania
@@ -340,11 +386,11 @@ kasia
 radek
 true.
 
-11 ?- potomkowie(kasia).
+12 ?- potomkowie(kasia).
 radek
 true.
 
-12 ?- potomkowie(radek).
+13 ?- potomkowie(radek).
 true.
 */
 
@@ -444,60 +490,133 @@ nastêpny     K1 ~ K2
 % zabytki_m(M) - Regu³a, która wypisuje na ekranie wszystkie zabytki znajduj¹ce siê w mieœcie M (ka¿dy w oddzielnej linii).
 
 zabytki_m(M) :-
+  zabytek(Z),
   gdzie(Z,M),
-  write(Z),
-  nl, fail.
+  miasto(M),
+  writeln(Z),
+  fail.
 zabytki_m(_).
 
 /*
-1 ?- zabytki_m('Berlin').
+1 ?- zabytki_m(M).
+Pa³ac w Wilanowie
+Kolumna Zygmunta III Wazy
+Wawel
+Sukiennice
+Koœció³ Mariacki
+Brama Brandenburska
+Reichstag
+Wie¿a Eiffla
+Katedra Notre-Dame
+Pa³ac Elizejski
+Bazylika œw. Paw³a za Murami
+Koloseum
+Zamek Œwiêtego Anio³a
+Bazylika œw. Marka
+Pa³ac Do¿ów
+Sagrada Familia
+Pa³ac Kryszta³owy
+Tower Bridge
+Pa³ac Buckingham
+Katedra Œwiêtego Paw³a
+true.
+
+2 ?- zabytki_m('Berlin').
 Brama Brandenburska
 Reichstag
 true.
 
-2 ?- zabytki_m('Rzeszów').
+3 ?- zabytki_m('Rzeszów').
 true.
 */
 
 % zabytki_mp(M) - Regu³a, która wypisuje na ekranie wszystkie zabytki znajduj¹ce siê w mieœcie M (ka¿dy w oddzielnej linii, ³¹cznie z nazw¹ miasta i pañstwa).
 
 zabytki_mp(M) :-
+  zabytek(Z),
   gdzie(Z,M),
+  miasto(M),
   polozenie(M,P),
-  write(P),
-  write(' '),
-  write(M),
-  write(' '),
-  write(Z),
-  nl, fail.
+  panstwo(P),
+  write(P), tab(1), write(M), tab(1), writeln(Z),
+  fail.
 zabytki_mp(_).
 
 /*
-3 ?- zabytki_mp('Berlin').
+4 ?- zabytki_mp(M).
+Polska Warszawa Pa³ac w Wilanowie
+Polska Warszawa Kolumna Zygmunta III Wazy
+Polska Kraków Wawel
+Polska Kraków Sukiennice
+Polska Kraków Koœció³ Mariacki
+Niemcy Berlin Brama Brandenburska
+Niemcy Berlin Reichstag
+Francja Pary¿ Wie¿a Eiffla
+Francja Pary¿ Katedra Notre-Dame
+Francja Pary¿ Pa³ac Elizejski
+W³ochy Rzym Bazylika œw. Paw³a za Murami
+W³ochy Rzym Koloseum
+W³ochy Rzym Zamek Œwiêtego Anio³a
+W³ochy Wenecja Bazylika œw. Marka
+W³ochy Wenecja Pa³ac Do¿ów
+Hiszpania Barcelona Sagrada Familia
+Hiszpania Madryt Pa³ac Kryszta³owy
+Wielka Brytania Londyn Tower Bridge
+Wielka Brytania Londyn Pa³ac Buckingham
+Wielka Brytania Londyn Katedra Œwiêtego Paw³a
+true.
+
+5 ?- zabytki_mp('Berlin').
 Niemcy Berlin Brama Brandenburska
 Niemcy Berlin Reichstag
 true.
 
-4 ?- zabytki_mp('Rzeszów').
+6 ?- zabytki_mp('Rzeszów').
 true.
 */
 
 % zabytki_p(P) - Regu³a, która wypisuje na ekranie wszystkie zabytki znajduj¹ce siê w pañstwie P (ka¿dy w oddzielnej linii).
 
 zabytki_p(P) :-
-  polozenie(M,P),
+  zabytek(Z),
   gdzie(Z,M),
-  write(Z),
-  nl, fail.
+  miasto(M),
+  polozenie(M,P),
+  panstwo(P),
+  writeln(Z),
+  fail.
 zabytki_p(_).
 
 /*
-5 ?- zabytki_p('Niemcy').
+7 ?- zabytki_p(P).
+Pa³ac w Wilanowie
+Kolumna Zygmunta III Wazy
+Wawel
+Sukiennice
+Koœció³ Mariacki
+Brama Brandenburska
+Reichstag
+Wie¿a Eiffla
+Katedra Notre-Dame
+Pa³ac Elizejski
+Bazylika œw. Paw³a za Murami
+Koloseum
+Zamek Œwiêtego Anio³a
+Bazylika œw. Marka
+Pa³ac Do¿ów
+Sagrada Familia
+Pa³ac Kryszta³owy
+Tower Bridge
+Pa³ac Buckingham
+Katedra Œwiêtego Paw³a
+true.
+
+8 ?- zabytki_p('Niemcy').
 Brama Brandenburska
 Reichstag
 true.
 
-6 ?- zabytki_p('Polska').
+9 ?- zabytki_p('Polska').
 Pa³ac w Wilanowie
 Kolumna Zygmunta III Wazy
 Wawel
@@ -512,18 +631,71 @@ sasiad(P1,P2) :- obok(P1,P2); obok(P2,P1).
 
 zabytki_ps(P) :-
   (P2 = P; sasiad(P,P2)),
-  polozenie(M,P2),
+  zabytek(Z),
   gdzie(Z,M),
-  write(P2),
-  write(' '),
-  write(M),
-  write(' '),
-  write(Z),
-  nl, fail.
+  miasto(M),
+  polozenie(M,P2),
+  panstwo(P2),
+  write(P2), tab(1), write(M), tab(1), writeln(Z),
+  fail.
 zabytki_ps(_).
 
 /*
-7 ?- zabytki_ps('Niemcy').
+10 ?- zabytki_ps(P).
+Polska Warszawa Pa³ac w Wilanowie
+Polska Warszawa Kolumna Zygmunta III Wazy
+Polska Kraków Wawel
+Polska Kraków Sukiennice
+Polska Kraków Koœció³ Mariacki
+Niemcy Berlin Brama Brandenburska
+Niemcy Berlin Reichstag
+Francja Pary¿ Wie¿a Eiffla
+Francja Pary¿ Katedra Notre-Dame
+Francja Pary¿ Pa³ac Elizejski
+W³ochy Rzym Bazylika œw. Paw³a za Murami
+W³ochy Rzym Koloseum
+W³ochy Rzym Zamek Œwiêtego Anio³a
+W³ochy Wenecja Bazylika œw. Marka
+W³ochy Wenecja Pa³ac Do¿ów
+Hiszpania Barcelona Sagrada Familia
+Hiszpania Madryt Pa³ac Kryszta³owy
+Wielka Brytania Londyn Tower Bridge
+Wielka Brytania Londyn Pa³ac Buckingham
+Wielka Brytania Londyn Katedra Œwiêtego Paw³a
+Niemcy Berlin Brama Brandenburska
+Niemcy Berlin Reichstag
+Francja Pary¿ Wie¿a Eiffla
+Francja Pary¿ Katedra Notre-Dame
+Francja Pary¿ Pa³ac Elizejski
+Wielka Brytania Londyn Tower Bridge
+Wielka Brytania Londyn Pa³ac Buckingham
+Wielka Brytania Londyn Katedra Œwiêtego Paw³a
+W³ochy Rzym Bazylika œw. Paw³a za Murami
+W³ochy Rzym Koloseum
+W³ochy Rzym Zamek Œwiêtego Anio³a
+W³ochy Wenecja Bazylika œw. Marka
+W³ochy Wenecja Pa³ac Do¿ów
+Hiszpania Barcelona Sagrada Familia
+Hiszpania Madryt Pa³ac Kryszta³owy
+Polska Warszawa Pa³ac w Wilanowie
+Polska Warszawa Kolumna Zygmunta III Wazy
+Polska Kraków Wawel
+Polska Kraków Sukiennice
+Polska Kraków Koœció³ Mariacki
+Niemcy Berlin Brama Brandenburska
+Niemcy Berlin Reichstag
+Francja Pary¿ Wie¿a Eiffla
+Francja Pary¿ Katedra Notre-Dame
+Francja Pary¿ Pa³ac Elizejski
+Francja Pary¿ Wie¿a Eiffla
+Francja Pary¿ Katedra Notre-Dame
+Francja Pary¿ Pa³ac Elizejski
+Francja Pary¿ Wie¿a Eiffla
+Francja Pary¿ Katedra Notre-Dame
+Francja Pary¿ Pa³ac Elizejski
+true.
+
+11 ?- zabytki_ps('Niemcy').
 Niemcy Berlin Brama Brandenburska
 Niemcy Berlin Reichstag
 Francja Pary¿ Wie¿a Eiffla
@@ -536,7 +708,7 @@ Polska Kraków Sukiennice
 Polska Kraków Koœció³ Mariacki
 true.
 
-8 ?- zabytki_ps('Polska').
+12 ?- zabytki_ps('Polska').
 Polska Warszawa Pa³ac w Wilanowie
 Polska Warszawa Kolumna Zygmunta III Wazy
 Polska Kraków Wawel
@@ -575,36 +747,41 @@ fun(X,Y) :- Y is 2*X.
 Y = 10.
 */
 
-delta(A,B,C,W) :- W is B*B - 4*A*C.
+delta(A,B,C,D) :- D is B*B - 4*A*C.
 
-trojmian(A,B,C,W) :-
+/*
+7 ?- delta(1,2,3,D).
+D = -8.
+*/
+
+trojmian(A,B,C,X) :-
   delta(A,B,C,D),
   D > 0,
   X1 is (-B - sqrt(D)) / (2*A),
   X2 is (-B + sqrt(D)) / (2*A),
-  W = [X1, X2].
+  X = [X1, X2].
 
-trojmian(A,B,C,W) :-
+trojmian(A,B,C,X) :-
   delta(A,B,C,D),
   D =:= 0,
-  X is -B / (2*A),
-  W = [X].
+  X0 is -B / (2*A),
+  X = [X0].
 
-trojmian(A,B,C,W) :-
+trojmian(A,B,C,X) :-
   delta(A,B,C,D),
   D < 0,
-  W = [].
+  X = [].
 
 /*
-1 ?- trojmian(1,0,-1,X).
+8 ?- trojmian(1,0,-1,X).
 X = [-1.0, 1.0] ;
 false.
 
-2 ?- trojmian(1,-2,1,X).
+9 ?- trojmian(1,-2,1,X).
 X = [1] ;
 false.
 
-3 ?- trojmian(1,0,1,X).
+10 ?- trojmian(1,0,1,X).
 X = [].
 */
 
@@ -612,66 +789,101 @@ X = [].
 Drugie rozwi¹zanie z wykorzystaniem operatora obciêcia !.
 */
 
-trojmian2(A,B,C,W) :-
+trojmian2(A,B,C,X) :-
   delta(A,B,C,D),
-  D > 0, !,
+  D > 0,
   X1 is (-B - sqrt(D)) / (2*A),
   X2 is (-B + sqrt(D)) / (2*A),
-  W = [X1, X2].
+  X = [X1, X2],
+  !.
 
-trojmian2(A,B,C,W) :-
+trojmian2(A,B,C,X) :-
   delta(A,B,C,D),
-  D =:= 0, !,
-  X is -B / (2*A),
-  W = [X].
+  D =:= 0,
+  X0 is -B / (2*A),
+  X = [X0],
+  !.
 
 trojmian2(_,_,_,[]).
 
 /*
-4 ?- trojmian2(1,0,-1,X).
+11 ?- trojmian2(1,0,-1,X).
 X = [-1.0, 1.0].
 
-5 ?- trojmian2(1,-2,1,X).
+12 ?- trojmian2(1,-2,1,X).
 X = [1].
 
-6 ?- trojmian2(1,0,1,X).
+13 ?- trojmian2(1,0,1,X).
 X = [].
 */
 
 % 8.6
 
-test(1,3).
+test1(1,3).
+
+test2(X,Y) :- X = 1, Y = 3.
 
 /*
-1 ?- test(1,3).
+1 ?- test1(1,3).
 true.
 
-2 ?- test(3,1).
+2 ?- test2(1,3).
+true.
+
+3 ?- test1(3,1).
 false.
 
-3 ?- test(_,3).
+4 ?- test2(3,1).
+false.
+
+5 ?- test1(_,3).
 true.
 
-4 ?- test(1,_).
+6 ?- test2(_,3).
 true.
 
-5 ?- test(_,_).
+7 ?- test1(1,_).
 true.
 
-6 ?- test(X,3).
+8 ?- test2(1,_).
+true.
+
+9 ?- test1(_,_).
+true.
+
+10 ?- test2(_,_).
+true.
+
+11 ?- test1(X,3).
 X = 1.
 
-7 ?- test(1,Y).
+12 ?- test2(X,3).
+X = 1.
+
+13 ?- test1(1,Y).
 Y = 3.
 
-8 ?- test(X,Y).
+14 ?- test2(1,Y).
+Y = 3.
+
+15 ?- test1(X,Y).
 X = 1,
 Y = 3.
 
-9 ?- test(3,Y).
+16 ?- test2(X,Y).
+X = 1,
+Y = 3.
+
+17 ?- test1(3,Y).
 false.
 
-10 ?- test(X,1).
+18 ?- test2(3,Y).
+false.
+
+19 ?- test1(X,1).
+false.
+
+20 ?- test2(X,1).
 false.
 */
 
@@ -690,19 +902,19 @@ seq(1,3).
 seq(2,4).
 
 /*
-11 ?- seq(1,X).
+21 ?- seq(1,X).
 X = 3.
 
-12 ?- seq(2,X).
+22 ?- seq(2,X).
 X = 4.
 
-13 ?- seq(3,X).
+23 ?- seq(3,X).
 X = 13.
 
-14 ?- seq(4,X).
+24 ?- seq(4,X).
 X = 25.
 
-15 ?- seq(5,X).
+25 ?- seq(5,X).
 X = 64.
 */
 
@@ -717,19 +929,19 @@ seq2(1,3).
 seq2(2,4).
 
 /*
-16 ?- seq2(1,X).
+26 ?- seq2(1,X).
 X = 3.
 
-17 ?- seq2(2,X).
+27 ?- seq2(2,X).
 X = 4.
 
-18 ?- seq2(3,X).
+28 ?- seq2(3,X).
 X = 13.
 
-19 ?- seq2(4,X).
+29 ?- seq2(4,X).
 X = 25.
 
-20 ?- seq2(5,X).
+30 ?- seq2(5,X).
 X = 64.
 */
 
@@ -742,18 +954,27 @@ liczba(X) :-
   X mod 7 =:= 0.
 
 /*
+1 ?- between(1,5,X).
+X = 1 ;
+X = 2 ;
+X = 3 ;
+X = 4 ;
+X = 5.
+*/
+
+/*
 Jakie zadanie realizuje predykat liczba/1?
 
-1 ?- liczba(35).
+2 ?- liczba(35).
 false.
 
-2 ?- liczba(70).
+3 ?- liczba(70).
 false.
 
-3 ?- liczba(105).
+4 ?- liczba(105).
 true.
 
-4 ?- liczba(X).
+5 ?- liczba(X).
 X = 105 ;
 X = 210 ;
 X = 315 ;

@@ -246,7 +246,7 @@ fun(X,Y) :- Y is 2*X.
 Y = 10.
 */
 
-% delta(A,B,C,W) :-
+% delta(A,B,C,D) :-
 
 % trojmian(...) :-
 

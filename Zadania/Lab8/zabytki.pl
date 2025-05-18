@@ -74,39 +74,42 @@ obok('Francja', 'W³ochy').
 obok('Francja', 'Hiszpania').
 
 zabytki_m(M) :-
+  zabytek(Z),
   gdzie(Z,M),
-  write(Z),
-  nl, fail.
+  miasto(M),
+  writeln(Z),
+  fail.
 zabytki_m(_).
 
 zabytki_mp(M) :-
+  zabytek(Z),
   gdzie(Z,M),
+  miasto(M),
   polozenie(M,P),
-  write(P),
-  write(' '),
-  write(M),
-  write(' '),
-  write(Z),
-  nl, fail.
+  panstwo(P),
+  write(P), tab(1), write(M), tab(1), writeln(Z),
+  fail.
 zabytki_mp(_).
 
 zabytki_p(P) :-
-  polozenie(M,P),
+  zabytek(Z),
   gdzie(Z,M),
-  write(Z),
-  nl, fail.
+  miasto(M),
+  polozenie(M,P),
+  panstwo(P),
+  writeln(Z),
+  fail.
 zabytki_p(_).
 
 sasiad(P1,P2) :- obok(P1,P2); obok(P2,P1).
 
 zabytki_ps(P) :-
   (P2 = P; sasiad(P,P2)),
-  polozenie(M,P2),
+  zabytek(Z),
   gdzie(Z,M),
-  write(P2),
-  write(' '),
-  write(M),
-  write(' '),
-  write(Z),
-  nl, fail.
+  miasto(M),
+  polozenie(M,P2),
+  panstwo(P2),
+  write(P2), tab(1), write(M), tab(1), writeln(Z),
+  fail.
 zabytki_ps(_).
