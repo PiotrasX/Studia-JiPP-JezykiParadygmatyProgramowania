@@ -23,12 +23,12 @@ Repozytorium zawiera rozwiązania zadań opracowane w ramach przedmiotu **Język
 
 - Programowanie funkcyjne w języku Haskell:  
   - Definiowanie funkcji i typów danych.  
-  - Rekurencje i funkcje wyższego rzędu.  
+  - Rekurencja i funkcje wyższego rzędu.  
   - Monady i operacje wejścia/wyjścia.  
 - Programowanie deklaratywne w języku Prolog:  
   - Definiowanie faktów i reguł.  
   - Unifikacja i backtracking.  
-  - Proste operacje na listach.  
+  - Operacje na listach.  
 
 ---
 
