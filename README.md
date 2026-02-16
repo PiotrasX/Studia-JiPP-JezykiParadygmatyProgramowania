@@ -1,6 +1,6 @@
 # 📘 Studia - JiPP - Języki i Paradygmaty Programowania  
 
-Repozytorium zawiera rozwiązania zadań opracowane w ramach przedmiotu **Języki i Paradygmaty Programowania**, realizowanego na Uniwersytecie Rzeszowskim podczas szóstego (6) semestru studiów inżynierskich na kierunku Informatyka. .  
+Repozytorium zawiera rozwiązania zadań opracowane w ramach przedmiotu **Języki i Paradygmaty Programowania**, realizowanego na Uniwersytecie Rzeszowskim podczas szóstego (6) semestru studiów inżynierskich na kierunku Informatyka.  
 
 &nbsp;  
 
@@ -8,7 +8,8 @@ Repozytorium zawiera rozwiązania zadań opracowane w ramach przedmiotu **Język
 
 ## 📁 Struktura repozytorium
 
-- `Zadania` – Zadania realizowane podczas zajęć oraz samodzielnie. Obejmują programowanie funkcyjne w języku Haskell i programowanie deklaratywne w języku Prolog.  
+- `Zadania/LabX` – Zadania laboratoryjne obejmujące różne paradygmaty programowania: funkcyjny (Haskell) oraz deklaratywny (Prolog). Ćwiczenia obejmują tworzenie modułów, definiowanie funkcji rekurencyjnych, operacje na listach i drzewach, obliczenia numeryczne (całkowanie, pierwiastki), przetwarzanie plików oraz implementację baz wiedzy i rozwiązywanie zagadek logicznych.  
+- `Zadania/KolokwiumX` – Samodzielne rozwiązania zadań przygotowujące do kolokwiów, obejmujące zagadnienia z Haskella i Prologa.  
 
 ---
 
@@ -21,10 +22,6 @@ Repozytorium zawiera rozwiązania zadań opracowane w ramach przedmiotu **Język
 
 ## 🔍 Zakres tematyczny
 
-- Programowanie imperatywne (C, Java):  
-  - Kompilacja i uruchamianie programów w terminalu.  
-  - Operacje na plikach.  
-  - Podstawowe struktury danych.  
 - Programowanie funkcyjne (Haskell):  
   - Definiowanie funkcji i typów danych.  
   - Rekurencja oraz funkcje wyższego rzędu.  
