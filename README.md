@@ -1,6 +1,6 @@
 # 📘 Studia - JiPP - Języki i Paradygmaty Programowania  
 
-Repozytorium zawiera rozwiązania zadań opracowane w ramach przedmiotu **Języki i Paradygmaty Programowania**, realizowanego na Uniwersytecie Rzeszowskim podczas szóstego (6) semestru studiów informatycznych.  
+Repozytorium zawiera rozwiązania zadań opracowane w ramach przedmiotu **Języki i Paradygmaty Programowania**, realizowanego na Uniwersytecie Rzeszowskim podczas szóstego (6) semestru studiów inżynierskich na kierunku Informatyka. .  
 
 &nbsp;  
 
@@ -14,21 +14,29 @@ Repozytorium zawiera rozwiązania zadań opracowane w ramach przedmiotu **Język
 
 ## ⚙️ Wykorzystane technologie
 
-- `Język programowania:` Haskell, Prolog.  
-- `IDE:` ConTEXT.  
+- `Technologie:` Haskell, Prolog.  
+- `Środowiska programistyczne (IDE):` ConTEXT.  
 
 ---
 
 ## 🔍 Zakres tematyczny
 
-- Programowanie funkcyjne w języku Haskell:  
+- Programowanie imperatywne (C, Java):  
+  - Kompilacja i uruchamianie programów w terminalu.  
+  - Operacje na plikach.  
+  - Podstawowe struktury danych.  
+- Programowanie funkcyjne (Haskell):  
   - Definiowanie funkcji i typów danych.  
   - Rekurencja oraz funkcje wyższego rzędu.  
   - Monady i operacje wejścia/wyjścia.  
-- Programowanie deklaratywne w języku Prolog:  
+  - Operacje na listach i drzewach binarnych.  
+  - Przetwarzanie plików.  
+- Programowanie deklaratywne (Prolog):  
   - Definiowanie faktów i reguł.  
   - Unifikacja i backtracking.  
   - Operacje na listach.  
+  - Bazy wiedzy i relacje rodzinne.  
+  - Rozwiązywanie zagadek logicznych.  
 
 ---
 
