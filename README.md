@@ -8,8 +8,8 @@ Repozytorium zawiera rozwiązania zadań opracowane w ramach przedmiotu **Język
 
 ## 📁 Struktura repozytorium
 
-- `Zadania/LabX` – Zadania laboratoryjne obejmujące różne paradygmaty programowania: funkcyjny (Haskell) oraz deklaratywny (Prolog). Ćwiczenia obejmują tworzenie modułów, definiowanie funkcji rekurencyjnych, operacje na listach i drzewach, obliczenia numeryczne (całkowanie, pierwiastki), przetwarzanie plików oraz implementację baz wiedzy i rozwiązywanie zagadek logicznych.  
 - `Zadania/KolokwiumX` – Samodzielne rozwiązania zadań przygotowujące do kolokwiów, obejmujące zagadnienia z Haskella i Prologa.  
+- `Zadania/LabX` – Zadania laboratoryjne obejmujące różne paradygmaty programowania: funkcyjny (Haskell) oraz deklaratywny (Prolog). Ćwiczenia obejmują tworzenie modułów, definiowanie funkcji rekurencyjnych, operacje na listach i drzewach, obliczenia numeryczne (całkowanie, pierwiastki), przetwarzanie plików oraz implementację baz wiedzy i rozwiązywanie zagadek logicznych.  
 
 ---
 
