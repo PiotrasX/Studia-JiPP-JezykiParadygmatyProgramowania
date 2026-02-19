@@ -1,4 +1,4 @@
-# 📘 Studia - JiPP - Języki i Paradygmaty Programowania  
+# 📘 Studia – JiPP - Języki i Paradygmaty Programowania  
 
 Repozytorium zawiera rozwiązania zadań opracowane w ramach przedmiotu **Języki i Paradygmaty Programowania**, realizowanego na Uniwersytecie Rzeszowskim podczas szóstego (6) semestru studiów inżynierskich na kierunku Informatyka.  
 
